@@ -22,6 +22,9 @@ export class PlayGameEntity {
   pattern: [];
 
   @Column()
+  userId: string;
+
+  @Column()
   @CreateDateColumn()
   createdAt: Date;
 

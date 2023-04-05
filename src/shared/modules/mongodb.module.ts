@@ -3,9 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { BingoCardEntity } from '../../bingo-card/bingo-card.entity';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { BingoCardItemEntity } from '../../bingo-card/bingo-card-item.entity';
-import { GamePatternEntity } from '../../game-pattern/game-pattern.entity';
 import { PlayGameEntity } from '../../play-game/play-game.entity';
-import { GameResultEntity } from "../../game-result/game-result.entity";
 
 @Module({
   imports: [
@@ -29,9 +27,7 @@ import { GameResultEntity } from "../../game-result/game-result.entity";
           entities: [
             BingoCardEntity,
             BingoCardItemEntity,
-            GamePatternEntity,
             PlayGameEntity,
-            GameResultEntity,
           ],
           synchronize: true,
           useUnifiedTopology: true,

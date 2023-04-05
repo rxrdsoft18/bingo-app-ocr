@@ -1,4 +1,4 @@
-import { IsArray, IsNotEmpty, IsString } from 'class-validator';
+import { IsArray, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreatePlayGameDto {
   @IsString()
@@ -7,4 +7,7 @@ export class CreatePlayGameDto {
 
   @IsArray()
   pattern: [];
+
+  @IsOptional()
+  userId?: string;
 }

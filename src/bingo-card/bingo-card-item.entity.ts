@@ -30,6 +30,9 @@ export class BingoCardItemEntity {
   tag: string;
 
   @Column()
+  isSelect: boolean;
+
+  @Column()
   @CreateDateColumn()
   createdAt: Date;
 
