@@ -1,11 +1,23 @@
-import { Body, Controller, Post, ValidationPipe } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Post,
+  UploadedFile,
+  UseInterceptors,
+  ValidationPipe,
+} from '@nestjs/common';
 import { PlayGameService } from './play-game.service';
 import { CreatePlayGameDto } from './dtos/create-play-game.dto';
 import { ReviewPlayGameDto } from './dtos/review-play-game.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { TextractService } from '../shared/services/textract.service';
 
 @Controller('play-game')
 export class PlayGameController {
-  constructor(private readonly playGameService: PlayGameService) {}
+  constructor(
+    private readonly playGameService: PlayGameService,
+    private readonly textractService: TextractService,
+  ) {}
 
   @Post()
   async create(@Body(ValidationPipe) playGameDto: CreatePlayGameDto) {
@@ -18,5 +30,12 @@ export class PlayGameController {
     @Body(ValidationPipe) reviewPlayGameDto: ReviewPlayGameDto,
   ) {
     return this.playGameService.reviewPlayGame(reviewPlayGameDto);
+  }
+
+  @Post('upload')
+  @UseInterceptors(FileInterceptor('file'))
+  async uploadImage(@UploadedFile() file: Express.Multer.File) {
+    console.log(file);
+    // return this.textractService.detectDocumentText(file);
   }
 }

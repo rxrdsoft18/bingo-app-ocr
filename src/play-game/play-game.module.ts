@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { PlayGameEntity } from './play-game.entity';
 import { BingoCardEntity } from '../bingo-card/bingo-card.entity';
 import { BingoCardItemEntity } from '../bingo-card/bingo-card-item.entity';
+import { TextractService } from '../shared/services/textract.service';
 
 @Module({
   imports: [
@@ -15,6 +16,6 @@ import { BingoCardItemEntity } from '../bingo-card/bingo-card-item.entity';
     ]),
   ],
   controllers: [PlayGameController],
-  providers: [PlayGameService],
+  providers: [PlayGameService, TextractService],
 })
 export class PlayGameModule {}
